@@ -1277,7 +1277,7 @@ function BalCam()
     R"""
     library("readxl")
     library("rio")
-    data <- rio::import(file = webpage, which = 3)
+    data <- rio::import(file = webpage, which = 2)
     """
     data = RCall.@rget data	
     data = DataFrames.DataFrame(data)
@@ -1312,7 +1312,7 @@ function BalCam()
     data[!,:Valores] = StrToFloat.(data[!,:Valores])
     data[!, :Periodicidad] .= "Mensual"
     data[!, :Grupo] .= "Externo"
-    data[!, :Fuente] .= "https://www.bch.hn/estadisticas-y-publicaciones-economicas/Grupo-externo/balanza-de-pagos/cuenta-corriente/importaciones"
+    data[!, :Fuente] .= "https://www.bch.hn/operativos/INTL/LIBBALANZA%20CAMBIARIA%20SERIE/Balanza%20Cambiaria%20Serie%202000-Actualidad.xlsx"
     data = data[!, [1,2,3,5,4,6,7]]
     data = data[!,[1,2,3,4,6,5,7]]
     data = DataFrames.dropmissing(data, names(data)[2])
